@@ -1,12 +1,21 @@
 pipeline {
-  agent {
-    docker { image 'node:16-alpine' }
-  }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'node --version'
-      }
+    agent any
+
+    tools {
+        git 'Git'  // 👈 This forces Jenkins to use the correct Git tool
     }
-  }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo '✅ Build stage reached successfully!'
+            }
+        }
+    }
 }
