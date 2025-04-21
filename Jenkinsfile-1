@@ -2,19 +2,25 @@ pipeline {
     agent any
 
     tools {
-        git 'git' // ✅ match exactly with Global Tool Config name
+        git 'git'
     }
 
     stages {
-        stage('Checkout') {
+        stage('Manual Clone') {
             steps {
-                checkout scm
+                sh 'rm -rf repo && git clone https://github.com/tamanna4373/jenkins-example-docker.git repo'
             }
         }
 
-        stage('Build') {
+        stage('Confirm Files') {
             steps {
-                echo '✅ Build stage reached successfully!'
+                sh 'ls -la repo'
+            }
+        }
+
+        stage('Done') {
+            steps {
+                echo '✅ Jenkins successfully cloned the repo manually!'
             }
         }
     }
