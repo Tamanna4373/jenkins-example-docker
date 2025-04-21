@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        git 'Git'  // 👈 This forces Jenkins to use the correct Git tool
+        git 'git' // ✅ match exactly with Global Tool Config name
     }
 
     stages {
